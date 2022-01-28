@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,Fragment } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -7,6 +7,13 @@ import SaveIcon from "@mui/icons-material/Save";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { FakeBookList } from "./FakeBookList";
+import Card from "@mui/material/Card";
+import { Typography } from "@mui/material";
+import { CardActionArea } from "@mui/material";
+import CardMedia from "@mui/material/CardMedia";
+import { CardContent } from "@mui/material";
+import { Paper } from "@mui/material";
+import { Image } from "@mui/icons-material";
 
 export default function Form() {
   const [title, setTitle] = useState("");
@@ -14,6 +21,9 @@ export default function Form() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+
+  const [books, setBooks] = useState([]);
+
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -28,7 +38,20 @@ export default function Form() {
     });
   };
 
+  useEffect(()=>{
+    fetch("http://localhost:8080/books")
+    .then(res=>res.json())
+    .then((result)=>{
+      setBooks(result);
+    }
+  )
+  },[])
+
+  
+
+
   return (
+    <Fragment>
     <form action="">
       <Box
         component="form"
@@ -83,7 +106,44 @@ export default function Form() {
         </Button>
       </Box>
     </form>
+    <h1>Books Availables</h1>
+    <div>
+    {books.map((book)=>(
+      
+      <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardContent>
+        <CardMedia
+          component="img"
+          height="140"
+          image= ""
+          alt="green iguana"
+        />
+          <Typography gutterBottom variant="h5" component="div"> Title: {book.title}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            
+            <br/>
+            Author: {book.author}
+            <br/>
+            Description: {book.description}
+            <br/>
+            Price: {book.price} €
+          </Typography>
+          <Paper variant="outlined">
+          <Image src='https://via.placeholder.com/64'
+ />
+
+          </Paper>
+
+        </CardContent>
+      </CardActionArea>
+    </Card>
+      
+    ))}
+    </div>
+    </Fragment>
   );
+ 
 }
 
 // export default function LoadingButtonsTransition() {
