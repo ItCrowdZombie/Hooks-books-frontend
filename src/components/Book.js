@@ -9,7 +9,7 @@ import { Paper } from "@mui/material";
 import { Image } from "@mui/icons-material";
 
 export default function Book(props) {
- git 
+
 
   return (
     <div>
