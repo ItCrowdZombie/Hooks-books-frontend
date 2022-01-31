@@ -22,7 +22,7 @@ export default function Form() {
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const [books, setBooks] = useState([]);
+
 
 
   const handleClick = (e) => {
@@ -38,18 +38,9 @@ export default function Form() {
     });
   };
 
-  useEffect(()=>{
-    fetch("http://localhost:8080/books")
-    .then(res=>res.json())
-    .then((result)=>{
-      setBooks(result);
-      console.log(books)
-    }
-  )
-  },[])
+
 
   
-
 
   return (
     <Fragment>
@@ -107,95 +98,10 @@ export default function Form() {
         </Button>
       </Box>
     </form>
-    <h1>Books Availables</h1>
-    <div>
-    {books.map((book)=>(
+  
     
-      <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardContent>
-        <CardMedia
-          component="img"
-          height="140"
-          image= {book.imageUrl}
-          alt="green iguana"
-        />
-          <Typography gutterBottom variant="h5" component="div"> Title: {book.title}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            
-            <br/>
-            Author: {book.author}
-            <br/>
-            Description: {book.description}
-            <br/>
-            Price: {book.price} €
-
-          </Typography>
-          <Paper variant="outlined">
-          <Image src='https://via.placeholder.com/64'
-          />
-
-          </Paper>
-
-        </CardContent>
-      </CardActionArea>
-    </Card>
-      
-    ))}
-    </div>
     </Fragment>
   );
  
 }
 
-// export default function LoadingButtonsTransition() {
-//   const [loading, setLoading] = React.useState(false);
-//   function handleClick() {
-//     setLoading(true);
-//   }
-
-//   return (
-//     <Box sx={{ '& > button': { m: 1 } }}>
-//       <FormControlLabel
-//         sx={{
-//           display: 'block',
-//         }}
-//         control={
-//           <Switch
-//             checked={loading}
-//             onChange={() => setLoading(!loading)}
-//             name="loading"
-//             color="primary"
-//           />
-//         }
-//         label="Loading"
-//       />
-//       <LoadingButton
-//         onClick={handleClick}
-//         loading={loading}
-//         variant="outlined"
-//         disabled
-//       >
-//         disabled
-//       </LoadingButton>
-//       <LoadingButton
-//         onClick={handleClick}
-//         loading={loading}
-//         loadingIndicator="Loading..."
-//         variant="outlined"
-//       >
-//         Fetch data
-//       </LoadingButton>
-//       <LoadingButton
-//         onClick={handleClick}
-//         endIcon={<SendIcon />}
-//         loading={loading}
-//         loadingPosition="end"
-//         variant="contained"
-//       >
-//         Send
-//       </LoadingButton>
-
-//     </Box>
-//   );
-// }

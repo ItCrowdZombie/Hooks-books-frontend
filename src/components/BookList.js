@@ -1,27 +1,39 @@
-import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Book from "./Book";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
+import React, { useState, useEffect, Fragment } from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 import { FakeBookList } from "./FakeBookList";
+import { Paper } from "@mui/material";
+import { Image } from "@mui/icons-material";
+import Book from "./Book";
 
-export default function BookList() {
+export default function BookList(props) {
+
+
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/books")
+      .then((res) => res.json())
+      .then((result) => {
+        setBooks(result);
+        console.log(books);
+      });
+  }, []);
+
   return (
-    <Container>
-      <Stack
-        padding="100px"
-        display="flex"
-        direction="row"
-        justifyContent="center"
-      >
-        <Book/>
-        {/* {FakeBookList.map((book, index) => (
-          <Book key={index} bookTitle={book.Title}></Book>
-        ))} */}
-      </Stack>
-    </Container>
+    <div>
+      {books.map(({title, author, description, price, imageUrl}) => (
+         <Book 
+          title={title}
+          author = {author}
+          description = {description}
+          price = {price}
+          imageUrl = {imageUrl}
+          />
+      ))}
+    </div>
   );
 }
