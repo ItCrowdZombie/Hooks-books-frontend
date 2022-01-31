@@ -43,6 +43,7 @@ export default function Form() {
     .then(res=>res.json())
     .then((result)=>{
       setBooks(result);
+      console.log(books)
     }
   )
   },[])
@@ -52,7 +53,7 @@ export default function Form() {
 
   return (
     <Fragment>
-    <form action="">
+    <form>
       <Box
         component="form"
         sx={{
@@ -109,14 +110,14 @@ export default function Form() {
     <h1>Books Availables</h1>
     <div>
     {books.map((book)=>(
-      
+    
       <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardContent>
         <CardMedia
           component="img"
           height="140"
-          image= ""
+          image= {book.imageUrl}
           alt="green iguana"
         />
           <Typography gutterBottom variant="h5" component="div"> Title: {book.title}</Typography>
@@ -128,10 +129,11 @@ export default function Form() {
             Description: {book.description}
             <br/>
             Price: {book.price} €
+
           </Typography>
           <Paper variant="outlined">
           <Image src='https://via.placeholder.com/64'
- />
+          />
 
           </Paper>
 
