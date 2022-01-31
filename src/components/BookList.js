@@ -9,6 +9,9 @@ import { Paper } from "@mui/material";
 import { Image } from "@mui/icons-material";
 import Book from "./Book";
 import { Container } from "@mui/material";
+import Grid from '@mui/material/Grid';
+
+
 
 export default function BookList(props) {
 
@@ -26,7 +29,12 @@ export default function BookList(props) {
 
   return (
     <div>
-      <Container>
+        <Container   sx={{
+    display: 'grid',
+    columnGap: 3,
+    rowGap: 1,
+    gridTemplateColumns: 'repeat(3, 1fr)',
+  }}>
       {books.map(({title, author, description, price, imageUrl}) => (
          <Book 
           title={title}
