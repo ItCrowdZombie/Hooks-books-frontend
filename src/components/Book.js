@@ -7,6 +7,8 @@ import { CardActionArea } from "@mui/material";
 import { FakeBookList } from "./FakeBookList";
 import { Paper } from "@mui/material";
 import { Image } from "@mui/icons-material";
+import Button from '@mui/material/Button';
+import CardActions from '@mui/material/CardActions';
 
 export default function Book(props) {
 
@@ -35,6 +37,10 @@ export default function Book(props) {
               Price: {props.price} €
             </Typography>
           </CardContent>
+          <CardActions>
+        <Button size="small">Edit</Button>
+        <Button size="small">Delete</Button>
+      </CardActions>
         </CardActionArea>
       </Card>
     </div>

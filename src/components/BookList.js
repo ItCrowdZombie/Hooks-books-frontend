@@ -8,6 +8,7 @@ import { FakeBookList } from "./FakeBookList";
 import { Paper } from "@mui/material";
 import { Image } from "@mui/icons-material";
 import Book from "./Book";
+import { Container } from "@mui/material";
 
 export default function BookList(props) {
 
@@ -25,6 +26,7 @@ export default function BookList(props) {
 
   return (
     <div>
+      <Container>
       {books.map(({title, author, description, price, imageUrl}) => (
          <Book 
           title={title}
@@ -34,6 +36,7 @@ export default function BookList(props) {
           imageUrl = {imageUrl}
           />
       ))}
+      </Container>
     </div>
   );
 }
