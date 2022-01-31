@@ -9,18 +9,7 @@ import { Paper } from "@mui/material";
 import { Image } from "@mui/icons-material";
 
 export default function Book(props) {
-  console.log(props.img);
-
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/books")
-      .then((res) => res.json())
-      .then((result) => {
-        setBooks(result);
-        console.log(books);
-      });
-  }, []);
+ git 
 
   return (
     <div>
